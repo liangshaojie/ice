@@ -1,0 +1,34 @@
+{
+  "apps": [
+    {
+      "name": "Ice",
+      "script": "start.js",//启动的脚本
+      //"instances": 2,//实例:2核服务器
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+
+    }
+  ],
+  "deploy": {
+    "production": {
+      "user": "你的服务器登录名",
+      "host": [
+        "你的服务器 IP"
+      ],
+      "port": "你的服务器登录端口 默认 22",
+      "ref": "origin/master",
+      "repo": "你的 git 仓库地址 服务器去clone",
+      "path": "服务器位置 /www/icefire/production",
+      "ssh_options": "StrictHostKeyChecking=no 克隆时验证",
+      //"post-deploy": "部署之后 yarn install && npm run build && pm2 startOrRestart ecosystem.json --env production",
+      "pre-deploy-local": "部署之前，本地 echo 'Deploy Done'",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
